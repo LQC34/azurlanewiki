@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Danh sách tàu</title>
+	<style>
+header{
+
+        padding: 2rem 0;
+    } 
+    .container {
+      display: flex;
+      border: 5px solid #AD9B72;
+    }
+    .sidebar {
+      width: 150px; /* Chiều rộng thanh công cụ */
+      background-color: #DEDBD5 ;
+      color:#3b5f3b;
+      padding: 10px;
+      height: 100%; /* Chiều cao bằng chiều cao màn hình */
+      font-size: 20;
+      border: 5px solid #AD9B72;
+    }
+
+    .content {
+      flex: 1; /* Chiếm phần còn lại của không gian */
+      padding: 20px;
+      background-color: #e5e1de ;
+    }
+    body{
+        float: right;
+      padding: 5px;
+      background-color:#3D4E48 ;
+      color: #AD9B72;
+      border: none;
+      cursor: pointer;
+      font-family: times news roman,serif;}
+         .image-container {
+            height: 150px ;
+            width: AUTO;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cắt ảnh để vừa khung */
+        }
+        p {
+          color: #AD9B72 ;
+        }
+         .search-container {
+            
+            width: 300px;
+            position: relative;
+        }
+        .search-box {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+
+        }
+        .suggestions {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            width: 100%;
+            display: none;
+            max-height: 150px;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
+        .suggestions div {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        li {
+          color: #AD9B72 ;
+          font-size: 20;
+          font: ;
+        }
+        img {
+        display: inline-block; 
+            height:120px; 
+            width:auto; }
+            ul{
+                background-color: ;
+            }
+            a{color: #AD9B72}
+
+	</style>
+	<script>
+        let data = ["New jersey", "Musashi", "Bolzano META",];
+        
+        function showSuggestions() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let suggestionsBox = document.getElementById("suggestionsBox");
+
+            if (input === "") {
+                suggestionsBox.style.display = "none";
+                return;
+            }
+
+            let filteredData = data.filter(item => item.toLowerCase().includes(input));
+            suggestionsBox.innerHTML = "";
+
+            filteredData.forEach(item => {
+                let div = document.createElement("div");
+                div.textContent = item;
+                div.onclick = function () {
+                    document.getElementById("searchInput").value = item;
+                    suggestionsBox.style.display = "none";
+                    searchContent();
+                };
+                suggestionsBox.appendChild(div);
+            });
+
+            suggestionsBox.style.display = filteredData.length > 0 ? "block" : "none";
+        }
+
+        function searchContent() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let items = document.querySelectorAll("#contentList li");
+
+            items.forEach(item => {
+                item.style.display = item.textContent.toLowerCase().includes(input) ? "block" : "none";
+            });
+        }
+    </script>
+</head>
+<body>
+	<div style="padding: ;"> <img style="width: 100%; height: auto;" src="ALW.png"></div>
+<div class="container">
+    <div class="sidebar">
+    <a style="color: #95795F" href="index.html">Trang chủ</a> <hr>
+    <a style="color: #95795F" href="Los.html">Danh sách tàu</a> <hr>
+    <a style="color: #95795F" href="index.html">Tìm hiểu thêm</a> <hr>
+    <a style="color: #95795F" href="index.html">Đăng ký</a> <hr>
+  </div>
+<ul id="contentList">
+	  <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search..." onkeyup="showSuggestions()">
+        <div class="suggestions" id="suggestionsBox"></div>
+    </div>
+	<li><a href="Musashi.html">Musashi</a><hr><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Japanese_battleship_Musashi_underway_in_1944_%28NH_63473%29_%28cropped%29.jpg"> </li>
+	<li>New Jersey <hr><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Japanese_battleship_Musashi_underway_in_1944_%28NH_63473%29_%28cropped%29.jpg"> </li>
+    <li>New Jersey <hr><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Japanese_battleship_Musashi_underway_in_1944_%28NH_63473%29_%28cropped%29.jpg"> </li>
+    <li><a href="Bolzano_META.html"> Bolzano Meta</a><hr><img src="Bolzano_META.png"> </li>
+    <li>New Jersey<hr><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Japanese_battleship_Musashi_underway_in_1944_%28NH_63473%29_%28cropped%29.jpg"> </li>
+    <li>New Jersey<hr><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Japanese_battleship_Musashi_underway_in_1944_%28NH_63473%29_%28cropped%29.jpg"> </li>
+
+</ul>
+</body>
+</html>
